@@ -1,5 +1,6 @@
 package com.liquifysolutions.xyz.student_kotlin.controller
 
+import com.liquifysolutions.xyz.student_kotlin.model.ListStudentsInput
 import com.liquifysolutions.xyz.student_kotlin.model.Student
 import com.liquifysolutions.xyz.student_kotlin.service.StudentService
 import org.springframework.http.HttpStatusCode
@@ -34,5 +35,17 @@ class StudentController(
     @PostMapping("/create")
     fun createStudent(@RequestBody student: Student): Student {
         return studentService.createStudent(student)
+    }
+
+    @PostMapping("/list")
+    fun listStudents(
+        @RequestBody listStudentsInput: ListStudentsInput
+    ): List<Student> {
+        val students = studentService.listStudents(
+            nameSearch = listStudentsInput.nameSearch,
+            age = listStudentsInput.age,
+            assignedClass = listStudentsInput.assignedClass,
+        )
+        return students
     }
 }

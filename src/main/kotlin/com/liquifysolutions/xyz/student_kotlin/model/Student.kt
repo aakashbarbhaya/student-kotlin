@@ -10,3 +10,9 @@ data class Student(
     val age: Int,
     val assignedClass: String
 )
+
+data class ListStudentsInput(
+    val nameSearch: String? = null,
+    val age: Int? = null,
+    val assignedClass: String? = null,
+)
